@@ -13,16 +13,22 @@ public class TestFlat2Heirarchical extends TestCase {
 
     protected void setUp() {
         flatJsonString = "{" +
-                    "\"property.child\": \"someValue\"" +
+                    "\"property.child\":\"someValue\"," +
+                    "\"property.child2\":\"lorem\"," +
+                    "\"property2.child\":\"foo\"" +
                 "}";
         deepJsonString = "{" +
-                    "\"property\": {" +
-                        "\"child\": \"someValue\"" +
+                    "\"property\":{" +
+                        "\"child\":\"someValue\"," +
+                        "\"child2\":\"lorem\"" +
+                    "}," +
+                    "\"property2\":{" +
+                        "\"child\":\"foo\"" +
                     "}" +
                 "}";
     }
 
     public void testConvert(){
-        Assert.assertSame(deepJsonString, Flat2Heirarchical.convert(flatJsonString));
+        Assert.assertEquals(deepJsonString, Flat2Heirarchical.convert(flatJsonString));
     }
 }

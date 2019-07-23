@@ -15,17 +15,36 @@ public class Flat2Heirarchical {
 
     public static String convert(String flatJsonString) {
         JsonParser parser = new JsonParser();
-        JsonElement flatJson = parser.parse(flatJsonString);
-        Set<String> flatkeys = flatJson.getAsJsonObject().keySet();
+        JsonObject flatJson = parser.parse(flatJsonString).getAsJsonObject();
+        Set<String> flatkeys = flatJson.keySet();
         deepObject = new JsonObject();
 
-        for(String flatkey : flatkeys){
+        for (String flatkey : flatkeys) {
+            JsonObject parent = deepObject;
             String[] keys = flatkey.split("\\.");
-
-
-            System.out.print(deepObject.toString());
+            for (int l = 0; l < keys.length; l++) {
+                String key = keys[l];
+                if(l < keys.length - 1) {
+                    if(parent.has(key)){
+                        parent = (JsonObject) parent.get(key);
+                    }
+                    else {
+                        parent.add(key, new JsonObject());
+                        parent = (JsonObject) parent.get(key);
+                    }
+                }
+                else {
+                    parent.add(key, flatJson.get(flatkey));
+                }
+            }
         }
 
-        return "";
+        return deepObject.toString();
     }
+
+//    private static void getObject(int level, String[] keys){
+//        if(level == 0){
+//            return deepObject;
+//        }
+//    }
 }
