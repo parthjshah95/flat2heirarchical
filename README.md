@@ -1,1 +1,1 @@
-## _Coming soon_ :smiley:
+## _Coming soon_ :wink:
