@@ -22,6 +22,8 @@ public class Flat2Heirarchical {
         for(String flatkey : flatkeys){
             String[] keys = flatkey.split("\\.");
 
+
+            System.out.print(deepObject.toString());
         }
 
         return "";

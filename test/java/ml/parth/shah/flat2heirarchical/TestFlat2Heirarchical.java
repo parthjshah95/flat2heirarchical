@@ -13,12 +13,10 @@ public class TestFlat2Heirarchical extends TestCase {
 
     protected void setUp() {
         flatJsonString = "{" +
-                    "\"property1\":0," +
-                    "\"property2.child\": \"someValue\"" +
+                    "\"property.child\": \"someValue\"" +
                 "}";
         deepJsonString = "{" +
-                    "\"property1\":0," +
-                    "\"property2\": {" +
+                    "\"property\": {" +
                         "\"child\": \"someValue\"" +
                     "}" +
                 "}";
